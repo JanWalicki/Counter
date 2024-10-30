@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Counter.MainPage"
+             Title="Counter Jan Walicki 4F">
+
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Margin="30" HorizontalOptions="Center">
+                <Label Text="Name" FontSize="15" Margin="5"/>
+                <Entry x:Name="CounterName" Placeholder="Enter counter name eg. counter 1"/>
+                <Label Text="Initial Value" FontSize="15" Margin="5"/>
+                <Entry x:Name="CounterIniValue" Placeholder="Enter counter initial Value eg. 5"/>
+                <Label Text="Color" FontSize="15" Margin="5"/>
+                <Entry x:Name="CounterColor" Placeholder="Enter counter color eg. #453434" />
+                <Button Text="Add Counter" Clicked="AddNewCounter" WidthRequest="150" Margin="10"/>
+            </StackLayout>
+
+
+            <CollectionView x:Name="CounterCollectionView" ItemsLayout="HorizontalList" Margin="30" HorizontalOptions="Center">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="15">
+                            <Border Stroke="{Binding Color}" StrokeThickness="4" BackgroundColor="#191716" Padding="50" Margin="15">
+                            
+                                <StackLayout HorizontalOptions="Center">
+                                    <Frame WidthRequest="250" BackgroundColor="#2B2826" Padding="10" Margin="5">
+                                        <Label Text="{Binding Name}" HorizontalOptions="Center" BackgroundColor="#2B2826" FontSize="24" />
+                                    </Frame>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                        <Button HeightRequest="15" BackgroundColor="{Binding Color}" Margin="5" Text="-" Clicked="OnDecrementClicked" CommandParameter="{Binding .}" />
+                                        <Label Text="{Binding Value}" FontSize="48" HorizontalOptions="Center" />
+                                        <Button HeightRequest="15" BackgroundColor="{Binding Color}" Margin="5" Text="+" Clicked="OnIncrementClicked" CommandParameter="{Binding .}" />
+                                    </StackLayout>
+                                    <Button Text="Reset" BackgroundColor="{Binding Color}" Margin="3" Clicked="OnResetClicked" CommandParameter="{Binding .}" />
+                                    <Button Text="Usuń" BackgroundColor="{Binding Color}" Margin="3"  Clicked="OnDeleteClicked" CommandParameter="{Binding .}" />
+                                </StackLayout>
+                            </Border>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
